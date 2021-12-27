@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCitiesTable extends Migration
+class CreateAttachmentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,15 @@ class CreateCitiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('cities', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('attachments', function (Blueprint $table) {
+            $table->id();
             $table->string('name');
-            $table->string('descr');
-            $table->integer('gover_id')->unsigned();
+            $table->string('type');
+            $table->unsignedBigInteger('transaction_id');
             $table->timestamps();
 
-            // FK
-            $table->foreign('gover_id')->references('id')->on('governorates');
+            //fks
+            $table->foreign('transaction_id')->references('id')->on('transactions');
         });
     }
 
@@ -32,6 +32,6 @@ class CreateCitiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cities');
+        Schema::dropIfExists('attachments');
     }
 }
