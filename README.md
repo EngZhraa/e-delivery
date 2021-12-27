@@ -20,4 +20,5 @@ Notes:
 - Do the migration in order of relashionship.
 - Use the following screenshot for DB design.
 
-![Students-Board Reactjs APP](https://user-images.githubusercontent.com/20383171/147367731-2021beee-db4e-41b8-8fa1-e0a978e101f9.jpeg)
+
+![Students-Board Reactjs APP](https://user-images.githubusercontent.com/20383171/147486422-3f91baec-a8cf-4e99-bfb7-fba44a8e7841.png)
