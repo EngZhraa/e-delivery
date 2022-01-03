@@ -17,6 +17,9 @@ class GoversSeeder extends Seeder
         // reading from file
         // insert to DB
         // code to insert some data
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+
+        DB::table('governorates')->truncate(); // delete
         DB::table('governorates')
         ->insert([
             [
@@ -27,6 +30,8 @@ class GoversSeeder extends Seeder
             ['name'=>'Karbalah'],
             ['name'=>'Anbar']
         ]);
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
 
     }
 }

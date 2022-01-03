@@ -22,3 +22,6 @@ Route::get('/', function () {
 
 Route::resource('cities', CityController::class);
 Route::resource('governorates', GovernorateController::class);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
