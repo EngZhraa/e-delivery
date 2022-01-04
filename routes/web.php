@@ -1,8 +1,5 @@
 <?php
 
-use App\Http\Controllers\CityController;
-use App\Http\Controllers\GovernorateController;
-use App\Models\Governorate;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,5 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('cities', CityController::class);
-Route::resource('governorates', GovernorateController::class);
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
