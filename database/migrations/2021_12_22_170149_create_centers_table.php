@@ -16,10 +16,10 @@ class CreateCentersTable extends Migration
         Schema::create('centers', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->unsignedInteger('city_id');// fk
+            $table->unsignedInteger('gover_id');// fk
             $table->timestamps();
 
-            $table->foreign('city_id')->references('id')->on('cities');
+            $table->foreign('gover_id')->references('id')->on('governorates');
 
         });
     }

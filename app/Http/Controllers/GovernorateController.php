@@ -16,7 +16,7 @@ class GovernorateController extends Controller
     public function index()
     {
         //
-        $govers = Governorate::with('cities')->get();
+        $govers = Governorate::with('centers')->get();
      
             return view('govers',[
             'data'=> $govers
