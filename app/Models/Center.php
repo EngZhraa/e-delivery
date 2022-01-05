@@ -5,23 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class City extends Model
+class Center extends Model
 {
     use HasFactory;
-    // 1- columns names
-    // note: in case there is a fk, define a function of relashionship
     protected $fillable = [
         'name',
-        'descr',
-        'gover_id' // fk
+        'gover_id'
     ];
-    // 2- define table name
-    protected $table = 'cities';
+    protected $table = 'centers';
 
-    // 3- define relashionships
+    /**
+     * Get the user that owns the Center
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function governorate()
     {
         return $this->belongsTo(Governorate::class,'gover_id');
     }
-
 }

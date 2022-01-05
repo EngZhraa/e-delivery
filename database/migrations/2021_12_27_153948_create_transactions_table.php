@@ -25,7 +25,6 @@ class CreateTransactionsTable extends Migration
             $table->string('nearest_point')->default('');
 
             $table->unsignedInteger('gover_id');
-            $table->unsignedInteger('city_id');
             $table->unsignedInteger('center_id');
             $table->unsignedInteger('sector_id');
             $table->unsignedInteger('status_id');
@@ -33,7 +32,6 @@ class CreateTransactionsTable extends Migration
 
             // fks
             $table->foreign('gover_id')->references('id')->on('governorates');
-            $table->foreign('city_id')->references('id')->on('cities');
 
             $table->foreign('center_id')->references('id')->on('centers');
 
