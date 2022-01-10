@@ -60,17 +60,17 @@
     required
     />
     
-    <select name="govers">
+    <select name="gover_id">
         @foreach ($govers as $gover)
             <option value="{{$gover->id}}">{{$gover->name}}</option>
         @endforeach
     </select>
-    <select name="centers">
+    <select name="center_id">
         @foreach ($centers as $center)
             <option value="{{$center->id}}">{{$center->name}}</option>
         @endforeach
     </select>
-    <select name="sectors">
+    <select name="sector_id">
         @foreach ($sectors as $sector)
         <option value="{{$sector->id}}">{{$sector->name}}</option>
     @endforeach
