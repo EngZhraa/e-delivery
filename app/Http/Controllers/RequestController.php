@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Center;
 use App\Models\Governorate;
 use App\Models\Sector;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Str;
 class RequestController extends Controller
 {
     /**
@@ -45,8 +46,31 @@ class RequestController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // validation
+        $validated = $request->validate([
+            'fullname'=>'required|string|min:4|max:255',
+            'email'=>'nullable|email',
+            'phone'=>'required|digits:10',
+            'mahala'=>'required|numeric',
+            'zokak'=>'required|numeric',
+            'dar'=>'required|numeric',
+            'nearest_point'=>'required|string|min:4|max:255',
+            'gover_id'=>'required|numeric',
+            'center_id'=>'required|numeric',
+            'sector_id'=>'required|numeric'
+        ]);
+        // get last counter value from counter table
+        // count + 1
+        // update old counter in the DB
+        // use counter for this transaction
+        // ex: #0001, #0002
+        $validated['trans_id'] = Str::uuid();
+        $validated['status_id'] = 1;
+        $transaction = Transaction::create($validated);
+        // if there are errors, exceptions will be raised
+        return redirect('requests')->with('msg','Transaction has been sent and pending now, Please keep this reference number safety #'.$transaction->trans_id);
         
+        // insert
     }
 
     /**
