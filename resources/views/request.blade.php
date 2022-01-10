@@ -4,8 +4,11 @@
     <div
     class="container h-screen bg-slate-200 flex flex-col justify-center items-center"
     >
-    <form action="/requests" method="POST"
+    <form 
+    action="/requests"
+     method="POST"
     class="flex flex-col"
+    enctype="multipart/form-data"
     >
     @csrf
     <input
@@ -98,7 +101,15 @@
         <option value="{{$sector->id}}">{{$sector->name}}</option>
     @endforeach
     </select>
+    <input
+    class="my-2 rounded-lg border-slate-200	"
 
+    type="file"
+    placeholder="Identities"
+    name="file"
+    id="file"
+    required
+    />
     <input
     class="bg-blue-500"
     type="submit"
@@ -109,12 +120,19 @@
     @if($errors->any())
     <ul>
         @foreach ($errors->all() as $error)
-            <li>{{$error}}</li>
+            <li>
+                <x-alert type="red" r="{{$error}}">
+        
+                </x-alert>
+                
+            </li>
         @endforeach
     </ul>
     @endif
     @if(session()->has('msg'))
-    <p style="background-color:green;">{{session()->get('msg')}}</p>
+    <x-alert type="green" r="{{session()->get('msg')}}">
+        
+    </x-alert>
     @endif
     </div>
     

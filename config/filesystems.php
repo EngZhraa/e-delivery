@@ -55,6 +55,10 @@ return [
         'csv'=>[
             'driver' => 'local',
             'root'=> storage_path('app/').'csv'
+        ],
+        'images'=>[
+            'driver' => 'local',
+            'root'=> storage_path('app/').'images'
         ]
 
 

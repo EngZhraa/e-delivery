@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Attachment;
 use App\Models\Center;
 use App\Models\Governorate;
 use App\Models\Sector;
@@ -57,7 +58,8 @@ class RequestController extends Controller
             'nearest_point'=>'required|string|min:4|max:255',
             'gover_id'=>'required|numeric',
             'center_id'=>'required|numeric',
-            'sector_id'=>'required|numeric'
+            'sector_id'=>'required|numeric',
+            'file'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
         // get last counter value from counter table
         // count + 1
@@ -67,8 +69,15 @@ class RequestController extends Controller
         $validated['trans_id'] = Str::uuid();
         $validated['status_id'] = 1;
         $transaction = Transaction::create($validated);
+
+        Attachment::create([
+            'name'=>$request->file->getClientOriginalName(),
+            'type'=>'image',
+            'transaction_id'=>$transaction->id
+        ]);
+        $request->file('file')->store('images');
         // if there are errors, exceptions will be raised
-        return redirect('requests')->with('msg','Transaction has been sent and pending now, Please keep this reference number safety #'.$transaction->trans_id);
+        return redirect('requests')->with('msg','#'.$transaction->trans_id);
         
         // insert
     }
