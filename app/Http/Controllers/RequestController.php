@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Center;
 use App\Models\Governorate;
 use App\Models\Sector;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class RequestController extends Controller
 {
@@ -45,8 +47,30 @@ class RequestController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // validate inputs
+       $validated =  $request->validate([
+            'fullname' => 'required|min:4|max:255',
+            'email' => 'nullable|email',
+            'phone'=>'required|digits:10',
+            'mahala'=>'required|numeric',
+            'zokak'=>'required|numeric',
+            'dar'=>'required|numeric',
+            'nearest_point'=>'required|string|min:4|max:255',
+            'gover_id'=>'required|numeric',
+            'center_id'=>'required|numeric',
+            'sector_id'=>'required|numeric'
+        ]);
         
+        // merging on validated input 
+        $validated['trans_id']=Str::uuid();
+        $validated['status_id'] = 1;
+      
+        // insert input
+        
+        $transaction = Transaction::create($validated);
+        // response  user
+        return redirect('requests')->with('message', 'Transaction has been created successfully, reference number: #'.$validated['trans_id']);
+
     }
 
     /**
