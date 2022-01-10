@@ -18,7 +18,8 @@
     </head>
     <body class="h-screen">
         <div class="h-screen font-sans text-gray-900 antialiased">
-           @yield('content')
+           {{$slot}}
+           {{-- @yield('content') --}}
         </div>
     </body>
 </html>

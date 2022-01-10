@@ -1,5 +1,5 @@
-@extends('layouts.guest')
-@section('content')
+<x-guest-layout>
+    
     {{-- New Code UI --}}
     <div
     class="container h-screen bg-slate-200 flex justify-center items-center"
@@ -84,4 +84,5 @@
     </form>
 
     </div>
-@endsection
+
+</x-guest-layout>
