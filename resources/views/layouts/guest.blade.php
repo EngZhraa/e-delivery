@@ -16,9 +16,9 @@
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
-    <body>
-        <div class="font-sans text-gray-900 antialiased">
-            {{ $slot }}
+    <body class="h-screen">
+        <div class="h-screen font-sans text-gray-900 antialiased">
+           @yield('content')
         </div>
     </body>
 </html>

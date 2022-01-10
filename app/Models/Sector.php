@@ -14,5 +14,13 @@ class Sector extends Model
     ];
     protected $table = 'sectors';
 
-    
+    /**
+     * Get the user that owns the Center
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function center()
+    {
+        return $this->belongsTo(Center::class,'center_id');
+    }
 }
