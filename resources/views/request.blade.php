@@ -113,9 +113,10 @@
     <input
     class="bg-blue-500"
     type="submit"
-    placeholder="Submit"
+    placeholder="Submit">
+    Submit
+    </button>
 
-    />
     </form>
     @if($errors->any())
     <ul>

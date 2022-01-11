@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Transaction extends Model
 {
@@ -46,9 +47,9 @@ class Transaction extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function center(): BelongsToMany
+    public function center(): BelongsTo
     {
-        return $this->belongsToMany(Center::class, 'center_id');
+        return $this->belongsTo(Center::class, 'center_id');
     }
     /**
      * Get the sector that owns the Transaction
