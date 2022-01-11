@@ -8,6 +8,7 @@ use App\Models\Governorate;
 use App\Models\Sector;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 class RequestController extends Controller
 {
@@ -70,12 +71,14 @@ class RequestController extends Controller
         $validated['status_id'] = 1;
         $transaction = Transaction::create($validated);
 
+        $newName = $transaction->phone.'_'.time().'_'.$request->file->getClientOriginalName();
+
         Attachment::create([
-            'name'=>$request->file->getClientOriginalName(),
+            'name'=>$newName,
             'type'=>'image',
             'transaction_id'=>$transaction->id
         ]);
-        $request->file('file')->store('images');
+        $request->file('file')->storeAs('images',$newName);
         // if there are errors, exceptions will be raised
         return redirect('requests')->with('msg','#'.$transaction->trans_id);
         

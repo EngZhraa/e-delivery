@@ -110,7 +110,7 @@
     id="file"
     required
     />
-    <input
+    <button
     class="bg-blue-500"
     type="submit"
     placeholder="Submit">
