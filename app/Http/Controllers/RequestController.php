@@ -10,6 +10,7 @@ use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Image;
 class RequestController extends Controller
 {
     /**
@@ -81,7 +82,12 @@ class RequestController extends Controller
             'type'=>'image',
             'transaction_id'=>$transaction->id
         ]);
-        $file->storeAs('images',$newName);
+        $img = Image::make($file->getRealPath());
+            $img->resize(512, 512, function ($constraint) {
+                $constraint->aspectRatio();
+            })
+            ->save(Storage::disk('images')->path('/').$newName);
+            // $file->storeAs('images',$newName);
         }
         // if there are errors, exceptions will be raised
         return redirect('requests')->with('msg','#'.$transaction->trans_id);
