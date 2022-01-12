@@ -60,7 +60,8 @@ class RequestController extends Controller
             'gover_id'=>'required|numeric',
             'center_id'=>'required|numeric',
             'sector_id'=>'required|numeric',
-            'file'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'files'=>'required|array|min:1|max:10',
+            'files.*'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
         // get last counter value from counter table
         // count + 1
@@ -71,14 +72,17 @@ class RequestController extends Controller
         $validated['status_id'] = 1;
         $transaction = Transaction::create($validated);
 
-        $newName = $transaction->phone.'_'.time().'_'.$request->file->getClientOriginalName();
+        foreach($request->file('files') as $file)
+        {
+            $newName = $transaction->phone.'_'.microtime().'_'.$file->getClientOriginalName();
 
         Attachment::create([
             'name'=>$newName,
             'type'=>'image',
             'transaction_id'=>$transaction->id
         ]);
-        $request->file('file')->storeAs('images',$newName);
+        $file->storeAs('images',$newName);
+        }
         // if there are errors, exceptions will be raised
         return redirect('requests')->with('msg','#'.$transaction->trans_id);
         

@@ -106,9 +106,10 @@
 
     type="file"
     placeholder="Identities"
-    name="file"
-    id="file"
+    name="files[]"
+    id="files"
     required
+    multiple
     />
     <button
     class="bg-blue-500"

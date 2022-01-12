@@ -1,5 +1,5 @@
 <div
-class="bg-{{$type}}-300 rounded text-white"
+class="rounded text-white bg-{{$type}}-300"
 >
 <b>{{$r}}</b>
 </div>
