@@ -48,11 +48,11 @@
         </thead>
         <tbody>
          @foreach ($data as $key=>$item)
-             <tr class="cursor-pointer" wire:click="goToHistory({{$item}})">
+             <tr >
                  <td align="center" class="py-2">
                      {{$key+1}}
                  </td>
-                 <td align="center" class="py-2">
+                 <td align="center" class="cursor-pointer py-2" wire:click="goToHistory({{$item}})">
                     {{$item->trans_id}}
                 </td>
                 <td align="center" class="py-2">
