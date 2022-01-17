@@ -625,6 +625,9 @@ select {
 .m-0 {
   margin: 0px;
 }
+.m-2 {
+  margin: 0.5rem;
+}
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -689,6 +692,9 @@ select {
 }
 .block {
   display: block;
+}
+.inline {
+  display: inline;
 }
 .flex {
   display: flex;
@@ -762,6 +768,15 @@ select {
 .w-screen {
   width: 100vw;
 }
+.w-\[calc\(100vw-256px\)\] {
+  width: calc(100vw - 256px);
+}
+.w-\[calc\(100vw-280px\)\] {
+  width: calc(100vw - 280px);
+}
+.w-\[calc\(100vw-285px\)\] {
+  width: calc(100vw - 285px);
+}
 .max-w-7xl {
   max-width: 80rem;
 }
@@ -794,6 +809,14 @@ select {
 }
 .origin-top-right {
   transform-origin: top right;
+}
+.rotate-180 {
+  --tw-rotate: 180deg;
+  transform: var(--tw-transform);
+}
+.rotate-0 {
+  --tw-rotate: 0deg;
+  transform: var(--tw-transform);
 }
 .scale-95 {
   --tw-scale-x: .95;
@@ -913,6 +936,10 @@ select {
   --tw-border-opacity: 1;
   border-color: rgb(156 163 175 / var(--tw-border-opacity));
 }
+.border-slate-100 {
+  --tw-border-opacity: 1;
+  border-color: rgb(241 245 249 / var(--tw-border-opacity));
+}
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -960,6 +987,10 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgb(238 242 255 / var(--tw-bg-opacity));
 }
+.bg-slate-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(148 163 184 / var(--tw-bg-opacity));
+}
 .fill-current {
   fill: currentColor;
 }
@@ -974,6 +1005,9 @@ select {
 }
 .p-0 {
   padding: 0px;
+}
+.p-1 {
+  padding: 0.25rem;
 }
 .px-4 {
   padding-left: 1rem;
@@ -1044,6 +1078,9 @@ select {
 }
 .pr-4 {
   padding-right: 1rem;
+}
+.text-left {
+  text-align: left;
 }
 .text-center {
   text-align: center;
@@ -1207,6 +1244,11 @@ select {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
+.transition-transform {
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
 .duration-150 {
   transition-duration: 150ms;
 }
@@ -1215,6 +1257,9 @@ select {
 }
 .duration-75 {
   transition-duration: 75ms;
+}
+.duration-100 {
+  transition-duration: 100ms;
 }
 .ease-in-out {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -1472,6 +1517,14 @@ select {
   }
 }
 @media (min-width: 768px) {
+
+  .md\:-mt-1 {
+    margin-top: -0.25rem;
+  }
+
+  .md\:mt-0 {
+    margin-top: 0px;
+  }
 
   .md\:block {
     display: block;

@@ -1,7 +1,8 @@
 <div>
-    <div>
-        <input type="text" wire:model="searchValue"/>
+    <div class="my-2 ml-2">
+        <input class="rounded border-slate-200" type="text" wire:model="searchValue"/>
         <select
+        class="rounded border-slate-200"
         id="centers"
         wire:model="center_id"
         >
@@ -10,53 +11,59 @@
         @endforeach
         </select>
     </div>
-    <table class="table-auto w-screen">
-        <thead>
+    <table class="w-[calc(100vw-285px)] table-auto m-2">
+        <thead class="bg-slate-500 text-white">
           <tr>
-            <th align="center">#</th>
-            <th align="center">Trans ID</th>
-            <th align="center">Full Name</th>
-            <th align="center">Phone</th>
-            <th align="center">Governorate</th>
-            <th align="center">Center</th>
-            <th align="center">Sector</th>
-            <th align="center">status</th>
-            <th align="center">Update</th>
+            <th align="center" class="py-2">#</th>
+            <th align="center" class="py-2">Trans ID</th>
+            <th align="center" class="py-2">Full Name</th>
+            <th align="center" class="py-2">Phone</th>
+            <th align="center" class="py-2">Governorate</th>
+            <th align="center" class="py-2">Center</th>
+            <th align="center" class="py-2">Sector</th>
+            <th align="center" class="py-2">status</th>
+            <th align="center" class="py-2">Update</th>
           </tr>
         </thead>
         <tbody>
          @foreach ($data as $key=>$item)
              <tr>
-                 <td align="center">
+                 <td align="center" class="py-2">
                      {{$key+1}}
                  </td>
-                 <td align="center">
+                 <td align="center" class="py-2">
                     {{$item->trans_id}}
                 </td>
-                <td align="center">
+                <td align="center" class="py-2">
                     {{$item->fullname}}
                 </td>
-                <td align="center">
+                <td align="center" class="py-2">
                     {{$item->phone}}
                 </td>
-                <td align="center">
+                <td align="center" class="py-2">
                     {{$item->governorate->name}}
                 </td>
-                <td align="center">
+                <td align="center" class="py-2">
                     {{$item->center->name}}
                 </td>
-                <td align="center">
+                <td align="center" class="py-2">
                     {{$item->sector->name}}
                 </td>
-                <td align="center">
+                <td align="center" class="py-2">
                    <span
-                   style="background-color:orange;"
+                  class="
+                  @if($item->status->name == 'pending')
+                    bg-orange-300
+                  @else
+                  bg-green-300
+                  @endif
+                  "
                    >
                     {{$item->status->name}}
                    </span>
                 </td>
-                <td align="center">
-                    <button>Update</button>
+                <td align="center" class="py-2">
+                    <button class="bg-slate-400	text-white p-1">Update</button>
                  </td>
              </tr>
          @endforeach
