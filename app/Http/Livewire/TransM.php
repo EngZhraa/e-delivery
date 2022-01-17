@@ -5,34 +5,51 @@ namespace App\Http\Livewire;
 use App\Models\Center;
 use App\Models\Transaction;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class TransM extends Component
 {
-    public $data,$centers;
+    use WithPagination;
+
+    public $centers;
     public $searchValue;
     public $center_id;
+
+    // function __construct()
+    // {
+    //     $this->center_id = 1;
+    // }
     public function render()
     {
-        
-        $this->data = Transaction::
-        where(
-            'fullname',
-            'like',
-            '%'.$this->searchValue.'%'
+        $data = Transaction::
+        where(function($q){
+            $q->where(
+                'fullname',
+                'like',
+                '%'.$this->searchValue.'%'
+            )
+            ->orWhere(
+                'trans_id',
+                '=',
+                $this->searchValue
+            );
+        })
+        ->where(
+           function($query){
+              if($this->center_id)
+              {
+                $query->where('center_id',
+                '=',
+                $this->center_id);
+              }
+           }
         )
-        ->orWhere(
-            'trans_id',
-            '=',
-            $this->searchValue
-        )
-        ->orWhere(
-            'center_id',
-            '=',
-            $this->center_id
-        )
-        ->get();
+        ->paginate(10);
+        // ->get();
         // load centers
         $this->centers = Center::all();
-        return view('livewire.trans-m');
+        return view('livewire.trans-m',[
+            'data'=>$data
+        ]);
     }
 }

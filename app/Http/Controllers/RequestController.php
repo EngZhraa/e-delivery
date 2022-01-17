@@ -7,6 +7,7 @@ use App\Models\Center;
 use App\Models\Governorate;
 use App\Models\Sector;
 use App\Models\Transaction;
+use App\Models\TransactionHistory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -70,9 +71,15 @@ class RequestController extends Controller
         // use counter for this transaction
         // ex: #0001, #0002
         $validated['trans_id'] = Str::uuid();
-        $validated['status_id'] = 1;
+        $validated['status_id'] = 1; // default status pending
         $transaction = Transaction::create($validated);
 
+        // insert transaction history
+        $history = TransactionHistory::create([
+            'transaction_id' => $transaction->id,
+            'status_id' => 1,
+            'reason'=>'init, pending'
+        ]);
         foreach($request->file('files') as $file)
         {
             $newName = $transaction->phone.'_'.microtime().'_'.$file->getClientOriginalName();

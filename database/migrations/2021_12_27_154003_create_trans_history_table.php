@@ -17,7 +17,7 @@ class CreateTransHistoryTable extends Migration
             $table->id();
             $table->unsignedBigInteger('transaction_id');// fk
             $table->unsignedInteger('status_id'); // fk
-            $table->unsignedInteger('user_id'); // fk
+            $table->unsignedInteger('user_id')->nullable(); // fk
             $table->string('reason')->default('');
             $table->timestamps();
 
