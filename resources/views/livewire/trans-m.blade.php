@@ -1,15 +1,36 @@
 <div>
-    <div class="my-2 ml-2">
-        <input class="rounded border-slate-200" type="text" wire:model="searchValue"/>
-        <select
-        class="rounded border-slate-200"
-        id="centers"
-        wire:model="center_id"
-        >
-        @foreach ($centers as $center)
-            <option value="{{$center->id}}">{{$center->name}}</option>
-        @endforeach
-        </select>
+    <div class="flex flex-row flex-wrap justify-between	">
+        <div class="my-2 ml-2">
+            <input class="rounded border-slate-200" type="text" wire:model="searchValue"/>
+            <select
+            class="rounded border-slate-200"
+            id="centers"
+            wire:model="center_id"
+            >
+            @foreach ($centers as $center)
+                <option value="{{$center->id}}">{{$center->name}}</option>
+            @endforeach
+            </select>
+        </div>
+        <div class="flex flex-row my-2 ml-2">
+            
+            @if($selectedTrans)
+            <p>{{$selectedTrans['trans_id']}}</p>
+            <form class="flex flex-row items-center	" wire:submit.prevent="submit">
+                <textarea class="rounded border-slate-200" type="text" wire:model="reason"></textarea>
+                <select
+                class="rounded border-slate-200"
+                wire:model="new_status_id"
+                >
+                @foreach ($status as $item)
+                    <option value="{{$item->id}}">{{$item->name}}</option>
+                @endforeach
+                </select>
+                <input type="file"  wire:model="files" required multiple/>
+                <input class="rounded border-slate-200 bg-green-200 p-2" type="submit" text="Update"/>
+            </form>
+            @endif
+        </div>
     </div>
     <table class="w-[calc(100vw-285px)] table-auto m-2">
         <thead class="bg-slate-500 text-white">
@@ -27,7 +48,7 @@
         </thead>
         <tbody>
          @foreach ($data as $key=>$item)
-             <tr>
+             <tr class="cursor-pointer" wire:click="goToHistory({{$item}})">
                  <td align="center" class="py-2">
                      {{$key+1}}
                  </td>
@@ -63,7 +84,7 @@
                    </span>
                 </td>
                 <td align="center" class="py-2">
-                    <button class="bg-slate-400	text-white p-1">Update</button>
+                    <button wire:click="update({{$item}})" class="bg-slate-400	text-white p-1">Update</button>
                  </td>
              </tr>
          @endforeach

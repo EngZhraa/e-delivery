@@ -89,6 +89,11 @@ class TransactionController extends Controller
     public function show($id)
     {
         //
+        $transaction = Transaction::find($id);
+        
+        return view('trans-history',[
+            'data'=>$transaction
+        ]);
     }
 
     /**
