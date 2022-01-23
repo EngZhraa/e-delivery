@@ -73,5 +73,8 @@
         </div>
 
         @livewireScripts
+        <script src="https://unpkg.com/@themesberg/flowbite@1.3.0/dist/flowbite.bundle.js"></script>
+
+
     </body>
 </html>
