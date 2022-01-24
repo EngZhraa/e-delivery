@@ -22,7 +22,7 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
-
+Route::resource('requests', RequestController::class);
 Route::resource('users', UserController::class)->middleware(['auth']);
 Route::resource('transactions', TransactionController::class)
 ->middleware(['auth']);
