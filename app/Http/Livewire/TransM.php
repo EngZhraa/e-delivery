@@ -32,7 +32,15 @@ class TransM extends Component
     // }
     public function render()
     {
+        $user = Auth::user();
         $data = Transaction::
+        where(function($q) use($user){
+            if($user->sector_id)
+            {
+                $q->where('sector_id',$user->sector_id);
+            }
+        })
+        ->
         where(function($q){
             $q->where(
                 'fullname',
@@ -68,6 +76,7 @@ class TransM extends Component
     public function submit()
     {
         // validate
+        
         $this->validate([
             'selectedTrans' =>'required',
             'new_status_id'=>'required|numeric|exists:status,id',

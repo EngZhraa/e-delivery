@@ -18,7 +18,11 @@ class CreateUsersTable extends Migration
             $table->string('fullname');
             $table->string('username')->unique();
             $table->string('password');
+            $table->unsignedInteger('sector_id')->nullable();//fk
             $table->timestamps();// created_at and updated_at
+
+            $table->foreign('sector_id')->references('id')->on('sectors');
+            
         });
     }
 

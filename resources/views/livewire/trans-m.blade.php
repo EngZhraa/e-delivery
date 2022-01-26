@@ -43,7 +43,9 @@
             <th align="center" class="py-2">Center</th>
             <th align="center" class="py-2">Sector</th>
             <th align="center" class="py-2">status</th>
+            @can('transactions-update')
             <th align="center" class="py-2">Update</th>
+            @endcan
           </tr>
         </thead>
         <tbody>
@@ -83,9 +85,11 @@
                     {{$item->status->name}}
                    </span>
                 </td>
+                @can('transactions-update')
                 <td align="center" class="py-2">
                     <button wire:click="update({{$item}})" class="bg-slate-400	text-white p-1">Update</button>
                  </td>
+                @endcan
              </tr>
          @endforeach
         </tbody>
